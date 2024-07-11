@@ -1,0 +1,25 @@
+{
+  "name": "dispatcher",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx esbuild --format=cjs --target=node20 --platform=node --bundle --outfile=build/bundle.js src/index.js",
+    "prepare": "node --experimental-sea-config sea-config.json",
+    "prebuild": "node -e \"require('fs').copyFileSync(process.execPath, 'build/dispatcher.exe')\"",
+    "build:step": "npx postject build/dispatcher.exe NODE_SEA_BLOB sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2",
+    "build": "npm run compile && npm run prepare && npm run prebuild && npm run build:step"
+  },
+  "keywords": [],
+  "author": "AdanEinstein",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "inquirer": "^9.3.4",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/progress": "^2.0.7"
+  }
+}
